@@ -1,6 +1,18 @@
 /*
   Made by Sébastien Raynaud in November 2018 @Chopokopx (Twitter) & @kopox@mastodon.social & @chopokopx@botsin.space (Mastodon)
-  This mostly follows a series of tutorials by Daniel Shiffman (Mastodon Bot & Amazon EC2 Deployment)
+  This mostly follows a series of tutorials by Daniel Shiffman: Mastodon Bot & Amazon EC2 Deployment
+  Mastodon bot playlist: https://www.youtube.com/watch?v=sKSxBd56H70&list=PLRqwX-V7Uu6byiVX7_Z1rclitVhMBmNFQ&index=1
+  Amazon EC2 Deployment: https://www.youtube.com/watch?v=26bajyD4fLg
+  
+  The bot is made with node.js, uses Mastodon API, and is living in the cloud using Amazon EC2
+  The bot interacts with people in Mastodon that follow or mention it with certain words
+  - When followed, toot with a mention to following person
+  - When mentioned
+    - If there is a "?" in the toot
+      - If there is "How many" or "How much" in the toot, answer with a mention and some random number
+      - Else if there is other keywords like "What" or "When", answer with a mention while saying it doesn't know, it only counts
+    - If there is "Thank you", "Thanks", or "Thx" in the toot, answer with a mention and a you're welcome sentence
+    - If there are 3 numbers in the toot, answer with a mention and a picture generated using the numbers as RGB values
 */
 
 // SETTING UP EVERYTHING -------------------------------------------
@@ -10,7 +22,7 @@ const Mastodon = require('mastodon-api'); // Mastodon API
 const util = require('util'); // To promisify 'child_process'
 const exec = util.promisify(require('child_process').exec); // To execute terminal commands
 // Command to execute in order to make the drawing using the processing sketch
-const cmd = 'C:/Users/rayna/Documents/Skillz/Code/processing-3.4/processing-java.exe --sketch="C:/Users/rayna/Documents/Skillz/Code/Node/mastodon/processing_sketch" --run'
+const cmd = 'processing_sketch/processing_sketch'
 
 console.log('Mastodon bot starting...');
 
@@ -24,7 +36,7 @@ const M = new Mastodon({
 
 // TOOT AUTOMATICALLY EVERY XX MS -----------------------------------------------------
 const interval = 7 * 24 * 60 * 60 * 1000; // Interval of toot : 7 days * 24 hours/day * 60 minutes/hour * 60 seconds/minute * 1000 milliseconds/second
-//automaticToot(); // Call it one time at the beginning
+automaticToot(); // Call it one time at the beginning
 setInterval(automaticToot, interval); // Then call it every 'interval' ms
 function automaticToot() {
   tootPicture()
@@ -66,14 +78,44 @@ listener.on('message', msg => {
         console.log('I got a question!');
         if (regexHowManyMuch.test(content)) {
           // Answer to "how many" / "how much" questions with a random number
+          const differentAnswers = [
+            `Mhmhmhm... something like`,
+            `I'm pretty sure it's`,
+            `I'd say at least`,
+            `Mhmhmhm... something like`
+          ];
+          const answerIndex = Math.floor(Math.random() * differentAnswers.length);
+          const replyBegin = differentAnswers[answerIndex];
           const num = Math.floor(Math.random() * 100);
-          const reply = `@${acct} Mhmhmhm... something like ${num}.`;
+          const reply = `@${acct} ${replyBegin} ${num}`;
           toot(reply, id);
-        } else if (OtherQuestions.test(content)) {
+        } else if (regexOtherQuestions.test(content)) {
           // Cannot answer to other kind of questions
-          const reply = `@${acct} I don't know, I just count...`;
+          const differentAnswers = [
+            `I don't know, I just count...`,
+            `I cannot answer that, try "how much" / "how many" questions`,
+            `I don't know, but I can draw you something if you like`,
+          ];
+          const answerIndex = Math.floor(Math.random() * differentAnswers.length);
+          const replyBegin = differentAnswers[answerIndex];
+          const reply = `@${acct} ${replyBegin}`;
           toot(reply, id);
         }
+      }
+
+      // Answer to thanks
+      const regexThanks = /Thank you|Thanks|Thx/i;
+      if (regexThanks.test(content)) {
+        console.log('I have been thanked!');
+        const differentAnswers = [
+          `You're welcome 🤖`,
+          `It's been a pleasure`,
+          `Oooh stop it you, I just do what I've been created to do 🤭`,
+        ];
+        const answerIndex = Math.floor(Math.random() * differentAnswers.length);
+        const replyBegin = differentAnswers[answerIndex];
+        const reply = `@${acct} ${replyBegin}`;
+        toot(reply, id);
       }
 
       // Reply with a picture
