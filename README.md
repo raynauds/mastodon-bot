@@ -5,8 +5,10 @@ This mostly follows a series of tutorials by Daniel Shiffman: Mastodon Bot & Ama
 <p>In the EC2 Deployed version, there is also a .env file and only the 'application.linux64' folder of the processing sketch. A 'mastodon-bot.pem' file is also required on the computer. More information in the links below.</p>
 
 - <a href="https://www.youtube.com/watch?v=sKSxBd56H70&list=PLRqwX-V7Uu6byiVX7_Z1rclitVhMBmNFQ&index=1">Mastodon bot playlist</a>
-- Amazon EC2 Deployment: https://www.youtube.com/watch?v=26bajyD4fLg
-- Mastodon of the bot: https://botsin.space/@chopokopx
+- <a href="https://www.youtube.com/watch?v=26bajyD4fLg">Amazon EC2 Deployment</a>
+- <a href="https://botsin.space/@chopokopx">Mastodon of the bot @chopokopx@botsin.space</a>
+
+<br>
 
 The bot is made with node.js, uses Mastodon API, and is living in the cloud using Amazon EC2
 The bot interacts with people in Mastodon that follow or mention it with certain words
