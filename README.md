@@ -1,6 +1,6 @@
 # mastodon-bot
-<p>Made by Sébastien Raynaud in November 2018 @Chopokopx (Twitter) & @kopox@mastodon.social & @chopokopx@botsin.space (Mastodon)</p>
-<p>This mostly follows a series of tutorials by Daniel Shiffman: Mastodon Bot & Amazon EC2 Deployment</p>
+<p>Made by Sébastien Raynaud in November 2018 @Chopokopx (Twitter) & @kopox@mastodon.social & @chopokopx@botsin.space (Mastodon).</p>
+<p>This mostly follows a series of tutorials by Daniel Shiffman: Mastodon Bot & Amazon EC2 Deployment.</p>
 
 <p>In the EC2 Deployed version, there is also a .env file and only the 'application.linux64' folder of the processing sketch. A 'mastodon-bot.pem' file is also required on the computer. More information in the links below.</p>
 
@@ -10,8 +10,8 @@
 
 <br>
 
-The bot is made with node.js, uses Mastodon API, and is living in the cloud using Amazon EC2
-The bot interacts with people in Mastodon that follow or mention it with certain words
+The bot is made with node.js, uses Mastodon API, and is living in the cloud using Amazon EC2.
+The bot interacts with people in Mastodon that follow or mention it with certain words:
 - When followed, toot with a mention to following person
 - When mentioned
   - If there is a "?" in the toot
