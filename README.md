@@ -6,7 +6,7 @@
 
 - <a href="https://www.youtube.com/watch?v=sKSxBd56H70&list=PLRqwX-V7Uu6byiVX7_Z1rclitVhMBmNFQ&index=1">Mastodon bot playlist</a>
 - <a href="https://www.youtube.com/watch?v=26bajyD4fLg">Amazon EC2 Deployment</a>
-- <a href="https://botsin.space/@chopokopx">Mastodon of the bot @chopokopx@botsin.space</a>
+- <a href="https://botsin.space/@chopokopx">Mastodon of the bot</a> @chopokopx@botsin.space
 
 <br>
 
