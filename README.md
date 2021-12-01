@@ -13,8 +13,9 @@ In the EC2 Deployed version, there is also a .env file and only the 'application
 
 <br>
 
-The bot is made with node.js, uses Mastodon API, and is living in the cloud using Amazon EC2.
-The bot interacts with people in Mastodon that follow or mention it with certain words:
+The bot is made with node.js, uses Mastodon API, and is (edit: was) living in the cloud using Amazon EC2.
+The bot toots every week a drawing with random circles using a random color palette.
+In addition, the bot interacts with people in Mastodon that follow or mention it with certain words:
 - When followed, toot with a mention to following person
 - When mentioned
   - If there is a "?" in the toot
