@@ -25,4 +25,4 @@ In addition, the bot interacts with people in Mastodon that follow or mention it
   - If there are 3 numbers in the toot (ideally between 0 and 255), answer with a mention and a picture generated using the numbers as RGB values
   - If there are nice words like "nice", "kitty", "beautiful", favorite the toot
   
-Example:'@chopokopx@botsin.space Please draw me something with 200 red, 50 green, and 150 blue'
+Example: `@chopokopx@botsin.space Please draw me something with 200 red, 50 green, and 150 blue`
